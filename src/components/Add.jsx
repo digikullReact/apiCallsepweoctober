@@ -13,14 +13,15 @@ const Add = () => {
         content:""
 
     }
-    const URL="http://rustycoder.live:8080"
+    const URL="http://rustycoder.live:8080";
+    const IndexName="adityaV2";
     const [state,setState]=useState(defaultValue)
 
     const addPost=()=>{
         // We will call the api 
         // next we will see how to pass headers as well
 
-        axios.post(`${URL}/posts`,state).then(response=>{
+        axios.post(`${URL}/add/${indexName}`,state).then(response=>{
             console.log(response.data);
             setState(defaultValue)
 

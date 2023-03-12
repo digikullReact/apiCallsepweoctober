@@ -11,11 +11,11 @@ function App() {
     <div className="App">
      {
       /*
-<Add/>
+   <Bill/>
 */
      } 
-     
-     <Bill/>
+    <Add/> 
+  
     </div>
   )
 }
