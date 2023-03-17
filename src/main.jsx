@@ -8,6 +8,7 @@ import {
 } from "react-router-dom";
 import CreateIndex from './components/CreateIndex';
 import Showdata from './components/Showdata';
+import Crud from './components/Crud';
 
 const router = createBrowserRouter([
   {
@@ -21,6 +22,10 @@ const router = createBrowserRouter([
   {
     path:"/showData/:indexName",
     element:<Showdata/>
+  },
+  { 
+    path:"/crud",
+    element:<Crud/>
   }
 ]);
 

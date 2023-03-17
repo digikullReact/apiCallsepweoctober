@@ -7,43 +7,58 @@ const { TextArea } = Input;
 
 
 
-const Add = () => {
-    const defaultValue={
-        title:"",
-        content:""
+const Add = (props) => {
+    const [state,setState]=useState({
+        name:"",
+        age:"",
+        address:"",
+        tags:""
+    })
+ 
+    const  handleChange=(event)=>{
+        setState({...state,[event.target.name]:event.target.value});
+     }
+  
 
-    }
-    const URL="http://rustycoder.live:8080";
-    const IndexName="adityaV2";
-    const [state,setState]=useState(defaultValue)
-
-    const addPost=()=>{
-        // We will call the api 
-        // next we will see how to pass headers as well
-
-        axios.post(`${URL}/add/${indexName}`,state).then(response=>{
-            console.log(response.data);
-            setState(defaultValue)
-
-        }).catch(err=>{
-            console.log(err);
+     const addEmp=()=>{
+      /*
+        props.addEmployee(state,function(){
+          setState({
+            name:"",
+            age:"",
+            address:"",
+            tags:""
         })
 
-    }
+        });
+        */
 
-    const  handleChange=(event)=>{
-       setState({...state,[event.target.name]:event.target.value});
-    }
+        props.addEmployee().then(data=>{
+          setState({
+            name:"",
+            age:"",
+            address:"",
+            tags:""
+        })
+
+        }).catch(err=>{
+
+        })
+      
+     }
 
   return (
 
 
     <div>
-        <h1>Create your Post </h1>
-        <Input placeholder="Title" name='title' onChange={handleChange} value={state.title} />
-         <TextArea rows={4} name={'content'} placeholder="maxLength is 600" value={state.content} maxLength={600} onChange={handleChange} />
+        <h1>Register Employee </h1>
+        <Input placeholder="Name" name='name' onChange={handleChange} value={state.name} />
+         <TextArea rows={4} name={'address'} placeholder="maxLength is 600" value={state.address} maxLength={600} onChange={handleChange} />
+         <Input placeholder="Age" name='age' onChange={handleChange} value={state.age} />
+         <Input placeholder="Tag" name='tags' onChange={handleChange} value={state.tags} />
 
-         <Button type="primary" onClick={addPost}>Add Post</Button>
+
+         <Button type="primary" onClick={addEmp}>Add Employee</Button>
 
 
 
