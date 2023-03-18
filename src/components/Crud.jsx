@@ -13,11 +13,25 @@ const Crud = () => {
 
   const modifyData=(arr)=>{
     return arr.map(ele=>{
-      return ele._source
+      
+      return {...ele._source,id:ele._id}
     })
 
   }
 
+  const deleteData=async (id)=>{
+
+    try {
+      let response=await axios.delete(`${URL}/remove-post/${id}`,{ data: { name: indexName } });
+      console.log(response.data)
+     
+      setFlag(!flag);
+
+    } catch (error) {
+      console.log(error);
+    }
+
+  }
 
   const getData=async()=>{
     try {
@@ -61,14 +75,14 @@ return new Promise((res,rej)=>{
       <Row>
       <Col span={12}>
 
-     <Add addEmployee={addEmployee}/>
+     <Add addEmployee={addEmployee} deleteData={deleteData}/>
 
 
       </Col>
       <Col span={12}>
 
 
-      <MyTable data={state} />
+      <MyTable data={state} deleteData={deleteData} />
       </Col>
     </Row>
 

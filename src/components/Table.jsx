@@ -1,33 +1,54 @@
 import { Space, Table, Tag } from 'antd';
-const columns = [
-  {
-    title: 'Name',
-    dataIndex: 'name',
-    key: 'name',
-    render: (text) => <a>{text}</a>,
-  },
-  {
-    title: 'Age',
-    dataIndex: 'age',
-    key: 'age',
-  },
-  {
-    title: 'Address',
-    dataIndex: 'address',
-    key: 'address',
-  },
+import { Button } from 'antd';
 
-  {
-    title: 'Action',
-    key: 'action',
-    render: (_, record) => (
-      <Space size="middle">
-        <a>Invite {record.name}</a>
-        <a>Delete</a>
-      </Space>
-    ),
-  },
-];
 
-export const MyTable = (props) => <Table columns={columns} dataSource={props.data} />;
+export const MyTable = (props) => {
+
+  const deleteData=(id)=>{
+    props.deleteData(id);
+   // console.log(id);
+
+  }
+
+  const columns = [
+    {
+      title: 'Name',
+      dataIndex: 'name',
+      key: 'name',
+      render: (text) => <a>{text}</a>,
+    },
+    {
+      title: 'Age',
+      dataIndex: 'age',
+      key: 'age',
+    },
+    {
+      title: 'Address',
+      dataIndex: 'address',
+      key: 'address',
+    },
+  
+    {
+      title: 'Action',
+      key: 'action',
+      render: (_, record) => (
+        
+
+        <Space size="middle">
+          <a>Invite {record.name}</a>
+          <Button type="primary" onClick={()=>deleteData(record.id)}>Delete</Button>
+  
+        </Space>
+      ),
+    },
+  ];
+
+return (
+<Table columns={columns} dataSource={props.data} />
+)
+
+
+
+
+};
 //export  MyTable;
