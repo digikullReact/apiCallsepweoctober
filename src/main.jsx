@@ -9,11 +9,17 @@ import {
 import CreateIndex from './components/CreateIndex';
 import Showdata from './components/Showdata';
 import Crud from './components/Crud';
+import Login from './components/Login';
+import PrivateRoute from './components/PrivateRoute';
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App/>,
+  },
+  {
+    path: "/login",
+    element: <Login/>,
   },
   {
     path:"/createIndex",
@@ -25,7 +31,11 @@ const router = createBrowserRouter([
   },
   { 
     path:"/crud",
-    element:<Crud/>
+    element:<PrivateRoute>
+         <Crud/>
+    </PrivateRoute>
+    
+  
   }
 ]);
 
