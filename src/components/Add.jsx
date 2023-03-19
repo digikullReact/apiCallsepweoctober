@@ -33,7 +33,7 @@ const Add = (props) => {
         });
         */
 
-        props.addEmployee().then(data=>{
+        props.addEmployee(state).then(data=>{
           setState({
             name:"",
             age:"",

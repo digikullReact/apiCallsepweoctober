@@ -24,10 +24,12 @@ const Crud = () => {
   }
 
   const deleteData=async (id)=>{
+    const headers = {
+      token:localStorage.getItem("token")
+    };
 
     try {
-      let response=await axios.delete(`${URL}/remove-post/${id}`,{ data: { name: indexName } });
-      console.log(response.data)
+      let response=await axios.delete(`${URL}/remove-post/${id}`,{ data: { name: indexName },headers:headers });
      
       setFlag(!flag);
 
