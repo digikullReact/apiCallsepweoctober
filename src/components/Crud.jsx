@@ -15,6 +15,26 @@ const Crud = () => {
   const [showModal,setShowModal]=useState(false);
   const navigate=useNavigate();
 
+  const getData=async()=>{
+    try {
+      const headers = {
+        token:localStorage.getItem("token")
+      };
+      let response=await axios.get(`${URL}/get/${indexName}`,{headers});
+      console.log(response.data)
+      setState(modifyData(response.data));
+
+    } catch (error) {
+      console.log(error);
+    }
+
+  }
+
+  useEffect(()=>{
+    getData(indexName)
+
+  },[flag])
+
   const modifyData=(arr)=>{
     return arr.map(ele=>{
       
@@ -39,20 +59,7 @@ const Crud = () => {
 
   }
 
-  const getData=async()=>{
-    try {
-      const headers = {
-        token:localStorage.getItem("token")
-      };
-      let response=await axios.get(`${URL}/get/${indexName}`,{headers});
-      console.log(response.data)
-      setState(modifyData(response.data));
-
-    } catch (error) {
-      console.log(error);
-    }
-
-  }
+ 
 
   const handleModal=()=>{
     //debugger;
@@ -125,10 +132,7 @@ const logout=()=>{
 //test
 
 }
-  useEffect(()=>{
-    getData(indexName)
-
-  },[flag])
+ 
   return (
     <div>
       <Row>
