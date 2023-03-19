@@ -57,6 +57,40 @@ const Crud = () => {
     setShowModal(!showModal);
   }
 
+  const editEmployee=(data,cb)=>{
+    console.log(data);
+    // We will call the api 
+    // next we will see how to pass headers as well
+return new Promise((res,rej)=>{
+  const headers = {
+    token:localStorage.getItem("token")
+  };
+  const payload={
+    ...data
+  }
+  delete payload.id;
+  payload.indexName=indexName;
+
+  // we have to delete the id from the data
+  axios.put(`${URL}/edit-post/${data.id}`,payload,{headers:headers}).then(response=>{
+
+  
+
+    // console.log(response.data);
+     setFlag(!flag);
+    // cb();
+    res()
+
+ }).catch(err=>{
+     console.log(err);
+     rej();
+ })
+
+})
+    
+
+}
+
 
   const addEmployee=(data,cb)=>{
     // We will call the api 
@@ -108,7 +142,7 @@ const logout=()=>{
       <Col span={12}>
 
 
-      <MyTable data={state} deleteData={deleteData} />
+      <MyTable data={state} deleteData={deleteData}  editEmployee={editEmployee}/>
 
 {
   showModal? <Model/>:""
